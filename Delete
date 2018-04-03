@@ -1,0 +1,76 @@
+[34minfo[39m: Configuration './dredd.yml' found, ignoring other arguments.
+[33mwarn[39m: Parser warning in file 'apiary.apib': no value(s) specified on line 265
+[34minfo[39m: Beginning Dredd testing...
+[34minfo[39m: Found Hookfiles: 0=/Users/vilimstubican/work/dredd-testing/api/tests/dredd/resource-delete.php
+[34minfo[39m: Spawning 'vendor/bin/dredd-hooks-php' hooks handler process.
+[34minfo[39m: Hooks handler stderr: PHP Warning:  include(../../web/index.php): failed to open stream: No such file or directory in /Users/vilimstubican/work/dredd-testing/api/tests/dredd/resource-delete.php on line 6
+PHP Stack trace:
+PHP   1. {main}() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/bin/dredd-hooks-php:0
+PHP   2. Dredd\Hooks::loadHooks() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/bin/dredd-hooks-php:33
+PHP   3. array_walk() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/src/Hooks.php:217
+PHP   4. Dredd\Hooks::Dredd\{closure}() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/src/Hooks.php:217
+PHP   5. array_walk() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/src/Hooks.php:216
+PHP   6. Dredd\Hooks::Dredd\{closure}() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/src/Hooks.php:216
+PHP   7. require_once() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/src/Hooks.php:214
+
+[34minfo[39m: Hooks handler stdout: 
+Warning: include(../../web/index.php): failed to open stream: No such file or directory in /Users/vilimstubican/work/dredd-testing/api/tests/dredd/resource-delete.php on line 6
+
+Call Stack:
+    0.0281     361352   1. {main}() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/bin/dredd-hooks-php:0
+    0.1556     879968   2. Dredd\Hooks::loadHooks() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/bin/dredd-hooks-php:33
+    0.1556     880312   3. array_walk() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/src/Hooks.php:217
+    0.1556     880736   4. Dredd\Hooks::Dredd\{closure}() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/src/Hooks.php:217
+    0.1557     881568   5. array_walk() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/src/Hooks.php:216
+    0.1557     881592   6. Dredd\Hooks::Dredd\{closure}() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/src/Hooks.php:216
+    0.1561     887984   7. require_once('/Users/vilimstubican/work/dredd-testing/api/tests/dredd/resource-delete.php') /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/src/Hooks.php:214
+
+
+Warning: include(): Failed opening '../../web/index.php' for inclusion (include_path='.:') in /Users/vilimstubican/work/dredd-testing/api/tests/dredd/resource-delete.php on line 6
+
+Call Stack:
+    0.0281     361352   1. {main}() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/bin/dredd-hooks-php:0
+    0.1556     879968   2. Dredd\Hooks::loadHooks() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/bin/dredd-hooks-php:33
+    0.1556     880312   3. array_walk() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/src/Hooks.php:217
+    0.1556     880736   4. Dredd\Hooks::Dredd\{closure}() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/src/Hooks.php:217
+    0.1557     881568   5. array_walk() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/src/Hooks.php:216
+    0.1557     881592   6. Dredd\Hooks::Dredd\{closure}() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/src/Hooks.php:216
+    0.1561     887984   7. require_once('/Users/vilimstubican/work/dredd-testing/api/tests/dredd/resource-delete.php') /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/src/Hooks.php:214
+
+
+[34minfo[39m: Hooks handler stderr: PHP Warning:  include(): Failed opening '../../web/index.php' for inclusion (include_path='.:') in /Users/vilimstubican/work/dredd-testing/api/tests/dredd/resource-delete.php on line 6
+PHP Stack trace:
+PHP   1. {main}() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/bin/dredd-hooks-php:0
+PHP   2. Dredd\Hooks::loadHooks() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/bin/dredd-hooks-php:33
+PHP   3. array_walk() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/src/Hooks.php:217
+PHP   4. Dredd\Hooks::Dredd\{closure}() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/src/Hooks.php:217
+PHP   5. array_walk() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/src/Hooks.php:216
+PHP   6. Dredd\Hooks::Dredd\{closure}() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/src/Hooks.php:216
+PHP   7. require_once() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/src/Hooks.php:214
+PHP Fatal error:  Uncaught Error: Class 'api\models\Resource' not found in /Users/vilimstubican/work/dredd-testing/api/tests/dredd/resource-delete.php:8
+Stack trace:
+#0 /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/src/Hooks.php(214): require_once()
+#1 [internal function]: Dredd\Hooks::Dredd\{closure}('/Users/vilimstu...', 0)
+#2 /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/src/Hooks.php(216): array_walk(Array, Object(Closure))
+#3 [internal function]: Dredd\Hooks::Dredd\{closure}('/Users/vilimstu...', 1)
+#4 /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/src/Hooks.php(217): array_walk(Array, Object(Closure))
+#5 /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/bin/dredd-hooks-php(33): Dredd\Hooks::loadHooks(Array)
+#6 {main}
+  thrown in /Users/vilimstubican/work/dredd-testing/api/tests/dredd/resource-delete.php on line 8
+
+[34minfo[39m: Hooks handler stdout: 
+Fatal error: Uncaught Error: Class 'api\models\Resource' not found in /Users/vilimstubican/work/dredd-testing/api/tests/dredd/resource-delete.php on line 8
+
+Error: Class 'api\models\Resource' not found in /Users/vilimstubican/work/dredd-testing/api/tests/dredd/resource-delete.php on line 8
+
+Call Stack:
+    0.0281     361352   1. {main}() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/bin/dredd-hooks-php:0
+    0.1556     879968   2. Dredd\Hooks::loadHooks() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/bin/dredd-hooks-php:33
+    0.1556     880312   3. array_walk() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/src/Hooks.php:217
+    0.1556     880736   4. Dredd\Hooks::Dredd\{closure}() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/src/Hooks.php:217
+    0.1557     881568   5. array_walk() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/src/Hooks.php:216
+    0.1557     881592   6. Dredd\Hooks::Dredd\{closure}() /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/src/Hooks.php:216
+    0.1561     887984   7. require_once('/Users/vilimstubican/work/dredd-testing/api/tests/dredd/resource-delete.php') /Users/vilimstubican/work/dredd-testing/vendor/ddelnano/dredd-hooks-php/src/Hooks.php:214
+
+
+[33mwarn[39m: Error connecting to the hooks handler process. Is the handler running? Retrying.

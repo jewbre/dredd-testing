@@ -1,0 +1,333 @@
+FORMAT: 1A
+HOST: http://localhost/dredd-testing/api/web
+
+# Dredd test documentation
+
+## Headers
+
+- Every request should contain `Authorization: Bearer <token>` header for authenticating current user
+    - Following routes do not require authorization:
+        1. `POST example-route-1`
+        2. `GET example-route-2`
+- for localized resources (job category names, response errors etc.) device should send `Accept-Language` header to specify which language should be returned.
+- collection responses (list of chat messages, etc.) contain `Content-Range` header in format `items from-to/count` to determine ammount of all data in collection. Example: `items 0-9/100` = serving first 10 items from 100 total items
+- combination of url parameters `?limit,offset` can be used. Specifying ranges is required.
+- API version is defined in reponse/request header `Version: 1.1.1`
+    - this can be used to format use proper versioning for vertically incompatible API versions
+    - if not provided, latest version of API is used
+- defined format for dates is ISO-8601*, which is following format: `2015-01-01T15:30:00Z`
+
+**PHP DateTime uses DateTime->format('c'). In JS you can just parse new Date().*
+
+## Errors
+
+Every response could return an error. When this happens status code is `4XX` or `5XX` and response body contains JSON formatted response
+
+* for simple error message content should look like this:
+
+
+        {
+            "message" : "Something bad happened"
+        }
+
+
+* for validation error messages*, response should be formatted as follows (422 status code):
+
+        [
+            {
+                "field" : "email",
+                "messages" : [
+                    "email is required.",
+                    "Please provide valid email"
+                ]
+            },
+            {
+                "field" : "password",
+                "messages" : [
+                    "password is required."
+                ]
+            }
+        ]
+
+
+**Field value can be used for example to map error to form fields etc.*
+
+#### Common status codes:
+- `400` – something's wrong with request (check error message and display to user)
+- `401` – user should be reauthorized (expired or invalid token)
+- `403` – you are not allowed to access this resource (admin rights, others users resources, etc.)
+- `404` – non existing resource
+- `422` – validation error  (you can probably map this to fields)
+- `5XX` – there's something wrong with server.
+
+**NOTE: repeated requests to assign item to collection (eg. add job to bookmarks by `PUT /me/job-bookmarks/{job_id}`) does not produce response error*
+
+##  Guidelines
+
+Here are some general guidelines for fields and their validation.
+
+- *Email*
+    - validate by following regex: {todo: fill this}
+    - required on `POST` calls
+
+- *Username*
+    - minimum length: 6 characters
+    - maximum length: 255 characters
+    - some characters required
+
+- *Password*
+    - minimum length: 6 characters
+    - maximum length: 255 characters
+
+- *Description*
+    - minimum length: 6 characters
+    - maximum length: 255 characters
+
+- *Birth day*
+    - format: `2015-01-01T15:30:00Z` (ISO-8601)
+    - optional: 18 years in the past
+    - can not be today or in the future
+    - check following dates:
+        - `1900-01-01T00:00:00Z` - time before unix timestamp
+        - `1970-01-01T00:00:00Z` - start of unix timestamp
+        - `2000-02-31T12:00:00Z` - non existing date
+
+
+
+
+# Group Resource group
+**Group** description.
+
+## Resource [/resources]
+**Resource** description.
+
+### Get all resources [GET /resources{?limit,offset}]
+**Single call** description.
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Bearer zUwTxZO4GRtd-FZw4vM1xdkWIv_btWnr
+            Accept-language: en-US
+
++ Parameters
+    + limit: 1 (number)
+    + offset: 0 (number, optional)
+
+
++ Response 200 (application/json; charset=UTF-8)
+
+    + Attributes (array[ResourceModel])
+
+
++ Request (application/json)
+    + Headers
+
+
++ Response 401 (application/json; charset=UTF-8)
+
+    + Attributes (RequestError)
+
+### Get single resources [GET /resources/{id}]
+
++ Parameters
+    + id: 1 (number)
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Bearer zUwTxZO4GRtd-FZw4vM1xdkWIv_btWnr
+            Accept-language: en-US
+
++ Attributes
+    + id: 10 (number)
+
+
+
++ Response 200 (application/json; charset=UTF-8)
+
+    + Attributes (ResourceModel)
+
+
++ Request (application/json)
+    + Headers
+
+
++ Response 401 (application/json; charset=UTF-8)
+
+    + Attributes (RequestError)
+
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Bearer zUwTxZO4GRtd-FZw4vM1xdkWIv_btWnr
+            Accept-language: en-US
+
+    + Parameters
+        + id: 999999 (number)
+
++ Response 404 (application/json; charset=UTF-8)
+
+    + Attributes (RequestError)
+        + message: `Non existing resource` (string)
+
+
+### Create resource [POST /resources]
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Bearer zUwTxZO4GRtd-FZw4vM1xdkWIv_btWnr
+            Accept-language: en-US
+
+    + Attributes (ResourcePostModel)
+
+
++ Response 201 (application/json; charset=UTF-8)
+
+    + Attributes (ResourceModel)
+
+
++ Request (application/json)
+    + Headers
+
+
++ Response 401 (application/json; charset=UTF-8)
+
+    + Attributes (RequestError)
+
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Bearer zUwTxZO4GRtd-FZw4vM1xdkWIv_btWnr
+            Accept-language: en-US
+
++ Response 422 (application/json; charset=UTF-8)
+
+    + Attributes (array[ValidationFieldError])
+
+### Update resource [PUT /resources/{id}]
++ Parameters
+    + id: 1 (number)
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Bearer zUwTxZO4GRtd-FZw4vM1xdkWIv_btWnr
+            Accept-language: en-US
+
+    + Attributes
+        + fieldString: `bbb` (string)
+
+    + Parameters
+        + id: 1 (number)
+
++ Response 200 (application/json; charset=UTF-8)
+
+    + Attributes (ResourceModel)
+
+
++ Request (application/json)
+    + Headers
+
+
++ Response 401 (application/json; charset=UTF-8)
+
+    + Attributes (RequestError)
+
++ Response 403 (application/json; charset=UTF-8)
+
+    + Attributes (RequestError)
+
+
++ Request (application/json)
+    + Headers
+
+                Authorization: Bearer zUwTxZO4GRtd-FZw4vM1xdkWIv_btWnr
+
+    + Parameters
+        + id: 99999 (number)
+
++ Response 404 (application/json; charset=UTF-8)
+
+    + Attributes (RequestError)
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Bearer zUwTxZO4GRtd-FZw4vM1xdkWIv_btWnr
+            Accept-language: en-US
+
+    + Attributes
+        + fieldString: (string)
+
+    + Parameters
+        + id: 1 (number)
+
++ Response 422 (application/json; charset=UTF-8)
+
+    + Attributes (array[ValidationFieldError])
+
+
+### Delete resource [DELETE /resources/{id}]
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Bearer zUwTxZO4GRtd-FZw4vM1xdkWIv_btWnr
+            Accept-language: en-US
+
++ Parameters
+    + id: 100 (number)
+
++ Response 204 (application/json; charset=UTF-8)
+
++ Response 403 (application/json; charset=UTF-8)
+
+    + Attributes (RequestError)
+
++ Response 404 (application/json; charset=UTF-8)
+
+    + Attributes (RequestError)
+
+
+# Data Structure
+
+## RequestError
++ message: `Something went wrong` (string)
+
+## ValidationFieldError
++ field: `email` (string)
++ messages (array[string])
+    + `Email is required.`
+    + `Please provide valid email.`
+
+## SubResourceModel
++ id: 1 (number)
++ message: `first item` (string)
+
+
+## ResourceModel
++ id: 100 (number)
++ fieldString: `JohnD` (string)
++ fieldNumber: 1024 (number) - comment for field
++ fieldDate: `2015-01-01T15:30:00Z` (string)
++ fieldArray (array[SubResourceModel])
+
+## ResourcePostModel
++ fieldString: `JohnD` (string, optional)
++ fieldNumber: 1024 (number) - comment for field
++ fieldDate: `2015-01-01T15:30:00Z` (string)
++ fieldArray (array[string])
+    + `first item`
+    + `second item`
+
+## ResourcePutModel
++ fieldString: `JohnD` (string, optional)
++ fieldDate: `2015-01-01T15:30:00Z` (string)
+
+## ExtendedResourceModel (ResourceModel)
++ additionalField: `something extra` (string)
